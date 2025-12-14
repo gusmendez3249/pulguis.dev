@@ -1,0 +1,287 @@
+<!-- ============================================
+     PulguisDev - Main Website Template
+     Elegant, Professional, Educational Content
+     ============================================ -->
+
+<div class="app-container">
+
+  <!-- ========== HEADER / NAVIGATION ========== -->
+  <header class="header" id="header">
+    <div class="header__container container">
+      <a href="#" class="header__logo" (click)="scrollToSection('hero'); $event.preventDefault()">
+        <img src="assets/branding/logo_sin_fondo.png" alt="PulguisDev Logo" class="header__logo-img">
+        <span class="header__logo-text">PulguisDev</span>
+      </a>
+
+      <nav class="header__nav">
+        <a href="#about" class="header__nav-link" (click)="scrollToSection('about'); $event.preventDefault()">Quiénes
+          Somos</a>
+        <a href="#objectives" class="header__nav-link"
+          (click)="scrollToSection('objectives'); $event.preventDefault()">Objetivo</a>
+        <a href="#content" class="header__nav-link"
+          (click)="scrollToSection('content'); $event.preventDefault()">Contenido</a>
+        <a href="#contact" class="header__nav-link"
+          (click)="scrollToSection('contact'); $event.preventDefault()">Contacto</a>
+      </nav>
+
+      <div class="header__social">
+        @for (social of socialLinks(); track social.name) {
+        <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="header__social-link"
+          [title]="social.name">
+          <img [src]="social.icon" [alt]="social.name" class="header__social-icon">
+        </a>
+        }
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg-decoration"></div>
+    <div class="hero__container container">
+      <div class="hero__content">
+        <div class="hero__badge">🐱 Contenido Educativo</div>
+        <h1 class="hero__title">
+          <span class="hero__title-line">Bienvenido a</span>
+          <span class="hero__title-brand gradient-text">PulguisDev</span>
+        </h1>
+        <p class="hero__subtitle">{{ heroSubtitle() }}</p>
+        <div class="hero__actions">
+          <a href="#content" class="btn btn--primary" (click)="scrollToSection('content'); $event.preventDefault()">
+            <span>Explora Nuestro Contenido</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#about" class="btn btn--secondary" (click)="scrollToSection('about'); $event.preventDefault()">
+            Conoce Más
+          </a>
+        </div>
+      </div>
+      <div class="hero__image">
+        <div class="hero__image-glow"></div>
+        <img src="assets/branding/Nombre_canal.png" alt="PulguisDev" class="hero__mascot animate-float">
+      </div>
+    </div>
+    <div class="hero__scroll-indicator" (click)="scrollToSection('about')">
+      <span>Scroll</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__header text-center">
+        <span class="section-tag">Conócenos</span>
+        <h2 class="about__title">{{ aboutTitle() }}</h2>
+      </div>
+      <div class="about__content">
+        <div class="about__image-wrapper">
+          <div class="about__image-decoration"></div>
+          <img src="assets/branding/logo.png" alt="PulguisDev Mascot" class="about__image">
+        </div>
+        <div class="about__text">
+          <p class="about__description">{{ aboutDescription() }}</p>
+          <div class="about__stats">
+            <div class="about__stat glass-card">
+              <span class="about__stat-icon">🎥</span>
+              <span class="about__stat-label">Videos Educativos</span>
+            </div>
+            <div class="about__stat glass-card">
+              <span class="about__stat-icon">📚</span>
+              <span class="about__stat-label">Historia & Ciencia</span>
+            </div>
+            <div class="about__stat glass-card">
+              <span class="about__stat-icon">💡</span>
+              <span class="about__stat-label">Datos Curiosos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== OBJECTIVES SECTION ========== -->
+  <section class="objectives section" id="objectives">
+    <div class="container">
+      <div class="objectives__header text-center">
+        <span class="section-tag">Nuestra Misión</span>
+        <h2 class="objectives__title">{{ objectivesTitle() }}</h2>
+        <p class="objectives__subtitle">Creemos que el conocimiento debe ser accesible, entretenido y memorable para
+          todos.</p>
+      </div>
+      <div class="objectives__grid">
+        @for (objective of objectives(); track objective.title) {
+        <div class="objective-card glass-card">
+          <div class="objective-card__icon">{{ objective.icon }}</div>
+          <h3 class="objective-card__title">{{ objective.title }}</h3>
+          <p class="objective-card__description">{{ objective.description }}</p>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTENT CAROUSEL SECTION ========== -->
+  <section class="content section" id="content">
+    <div class="container">
+      <div class="content__header text-center">
+        <span class="section-tag">Nuestros Videos</span>
+        <h2 class="content__title">Contenido Destacado</h2>
+        <p class="content__subtitle">Explora nuestros videos más recientes sobre temas fascinantes</p>
+      </div>
+
+      <div class="carousel">
+        <button class="carousel__btn carousel__btn--prev" (click)="prevSlide()" aria-label="Anterior">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <div class="carousel__track">
+          @for (video of videos(); track video.title; let i = $index) {
+          <div class="carousel__slide" [class.carousel__slide--active]="i === currentSlide()">
+            <div class="video-card glass-card" (click)="openVideoModal(video)">
+              <div class="video-card__thumbnail">
+                <img [src]="video.thumbnail" [alt]="video.title" class="video-card__image">
+                <div class="video-card__play">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="video-card__content">
+                <h3 class="video-card__title">{{ video.title }}</h3>
+                <div class="video-card__actions">
+                  <span class="btn btn--primary btn--sm">
+                    Ver Video
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+
+        <button class="carousel__btn carousel__btn--next" (click)="nextSlide()" aria-label="Siguiente">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+
+        <div class="carousel__dots">
+          @for (video of videos(); track video.title; let i = $index) {
+          <button class="carousel__dot" [class.carousel__dot--active]="i === currentSlide()" (click)="goToSlide(i)"
+            [attr.aria-label]="'Ir a slide ' + (i + 1)">
+          </button>
+          }
+        </div>
+      </div>
+
+      <div class="content__cta text-center">
+        <a href="https://www.youtube.com/@PulguisDev" target="_blank" rel="noopener noreferrer"
+          class="btn btn--primary">
+          <span>Ver Todos los Videos</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SOCIAL LINKS SECTION ========== -->
+  <section class="social section" id="social">
+    <div class="container">
+      <div class="social__header text-center">
+        <span class="section-tag">Síguenos</span>
+        <h2 class="social__title">Nuestras Redes Sociales</h2>
+        <p class="social__subtitle">¡Únete a nuestra comunidad y no te pierdas ningún contenido!</p>
+      </div>
+      <div class="social__grid">
+        @for (social of socialLinks(); track social.name) {
+        <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="social-card glass-card">
+          <img [src]="social.icon" [alt]="social.name" class="social-card__icon">
+          <span class="social-card__name">{{ social.name }}</span>
+          <span class="social-card__handle">&#64;PulguisDev</span>
+        </a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT / FOOTER SECTION ========== -->
+  <footer class="footer" id="contact">
+    <div class="footer__top">
+      <div class="container">
+        <div class="footer__content">
+          <div class="footer__brand">
+            <img src="assets/branding/logo_sin_fondo.png" alt="PulguisDev" class="footer__logo">
+            <h3 class="footer__brand-name">PulguisDev</h3>
+            <p class="footer__tagline">Educación y entretenimiento en cada video</p>
+          </div>
+
+          <div class="footer__links">
+            <h4 class="footer__links-title">Navegación</h4>
+            <a href="#about" class="footer__link" (click)="scrollToSection('about'); $event.preventDefault()">Quiénes
+              Somos</a>
+            <a href="#objectives" class="footer__link"
+              (click)="scrollToSection('objectives'); $event.preventDefault()">Objetivo</a>
+            <a href="#content" class="footer__link"
+              (click)="scrollToSection('content'); $event.preventDefault()">Contenido</a>
+          </div>
+
+          <div class="footer__contact">
+            <h4 class="footer__contact-title">Contacto</h4>
+            <a href="mailto:{{ email() }}" class="footer__email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              {{ email() }}
+            </a>
+            <div class="footer__social">
+              @for (social of socialLinks(); track social.name) {
+              <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="footer__social-link"
+                [title]="social.name">
+                <img [src]="social.icon" [alt]="social.name" class="footer__social-icon">
+              </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p class="footer__copyright">© 2024 PulguisDev. Todos los derechos reservados.</p>
+        <p class="footer__made">Hecho con 💜 para educar y entretener</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ========== VIDEO MODAL ========== -->
+@if (isModalOpen()) {
+<div class="video-modal" (click)="onModalBackdropClick($event)">
+  <div class="video-modal__container">
+    <button class="video-modal__close" (click)="closeVideoModal()" aria-label="Cerrar video">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    @if (currentVideo()) {
+    <div class="video-modal__content">
+      <video class="video-modal__player" controls autoplay [src]="currentVideo()!.videoUrl">
+        Tu navegador no soporta la reproducción de videos.
+      </video>
+      <h3 class="video-modal__title">{{ currentVideo()!.title }}</h3>
+    </div>
+    }
+  </div>
+</div>
+}
