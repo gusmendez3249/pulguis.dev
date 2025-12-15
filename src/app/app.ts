@@ -110,8 +110,31 @@ export class App implements OnInit, OnDestroy {
   protected isModalOpen = signal(false);
   protected currentVideo = signal<Video | null>(null);
 
+  // Mobile Menu state
+  protected isMobileMenuOpen = signal(false);
+
   constructor(@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  // Mobile Menu Methods
+  protected toggleMobileMenu() {
+    const isOpen = !this.isMobileMenuOpen();
+    this.isMobileMenuOpen.set(isOpen);
+
+    // Prevent body scroll when menu is open
+    if (this.isBrowser) {
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+  }
+
+  protected closeMobileMenu() {
+    this.isMobileMenuOpen.set(false);
+
+    // Re-enable body scroll
+    if (this.isBrowser) {
+      document.body.style.overflow = '';
+    }
   }
 
   ngOnInit() {

@@ -32,15 +32,103 @@
         </a>
         }
       </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="header__menu-toggle" [class.active]="isMobileMenuOpen()" (click)="toggleMobileMenu()"
+        aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <!-- ========== MOBILE MENU OVERLAY ========== -->
+  <div class="mobile-menu" [class.active]="isMobileMenuOpen()">
+    <div class="mobile-menu__container">
+      <!-- Brand Name Section - Prominently Displayed -->
+      <div class="mobile-menu__brand">
+        <h2>PulguisDev</h2>
+        <p>Contenido Educativo y Entretenido</p>
+      </div>
+
+      <!-- Social Links Section - Priority Display -->
+      <div class="mobile-menu__social">
+        <h3>🌐 Síguenos en Redes</h3>
+        <div class="mobile-menu__social-grid">
+          @for (social of socialLinks(); track social.name) {
+          <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="mobile-menu__social-link">
+            <img [src]="social.icon" [alt]="social.name" class="mobile-menu__social-icon">
+            <div class="mobile-menu__social-info">
+              <span class="mobile-menu__social-name">{{ social.name }}</span>
+              <span class="mobile-menu__social-handle">@PulguisDev</span>
+            </div>
+          </a>
+          }
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mobile-menu__nav">
+        <a href="#about" class="mobile-menu__nav-link"
+          (click)="scrollToSection('about'); closeMobileMenu(); $event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+          </svg>
+          Quiénes Somos
+        </a>
+        <a href="#objectives" class="mobile-menu__nav-link"
+          (click)="scrollToSection('objectives'); closeMobileMenu(); $event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          Objetivo
+        </a>
+        <a href="#content" class="mobile-menu__nav-link"
+          (click)="scrollToSection('content'); closeMobileMenu(); $event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          Contenido
+        </a>
+        <a href="#contact" class="mobile-menu__nav-link"
+          (click)="scrollToSection('contact'); closeMobileMenu(); $event.preventDefault()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          Contacto
+        </a>
+      </nav>
+    </div>
+  </div>
+
 
   <!-- ========== HERO SECTION ========== -->
   <section class="hero" id="hero">
     <div class="hero__bg-decoration"></div>
+
+    <!-- MOBILE: Social links prominently displayed at top (visible on mobile only) -->
+    <div class="hero__mobile-social">
+      <div class="hero__mobile-social-header">
+        <h2 class="hero__mobile-social-title gradient-text">PulguisDev</h2>
+        <p class="hero__mobile-social-subtitle"> Contenido Educativo</p>
+      </div>
+      <div class="hero__mobile-social-links">
+        @for (social of socialLinks(); track social.name) {
+        <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="hero__mobile-social-link"
+          [title]="social.name">
+          <img [src]="social.icon" [alt]="social.name" class="hero__mobile-social-icon">
+          <span class="hero__mobile-social-name">{{ social.name }}</span>
+        </a>
+        }
+      </div>
+    </div>
+
     <div class="hero__container container">
       <div class="hero__content">
-        <div class="hero__badge">🐱 Contenido Educativo</div>
+        <div class="hero__badge"> Contenido Educativo</div>
         <h1 class="hero__title">
           <span class="hero__title-line">Bienvenido a</span>
           <span class="hero__title-brand gradient-text">PulguisDev</span>
